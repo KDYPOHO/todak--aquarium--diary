@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="토닥 어항 일기 - 감정을 어항에 담는 힐링 다이어리 앱" />
+  <meta property="og:title" content="토닥 어항 일기" />
+  <meta property="og:description" content="감정을 어항에 담는 힐링 다이어리" />
+  <meta property="og:image" content="assets/og-image.png" />
+  <title>토닥 어항 일기 · Todak Aquarium Diary</title>
+  <style>
+    :root {
+      --accent:   #5CADB8;
+      --accent2:  #8E9FD4;
+      --coral:    #F0907E;
+      --bg:       #0d1b2a;
+      --bg2:      #112233;
+      --card:     #162840;
+      --text:     #e8f4f8;
+      --muted:    #7fa8bc;
+      --radius:   18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+                   'Noto Sans KR', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Lang toggle ── */
+    .lang-bar {
+      position: fixed; top: 0; right: 0; left: 0; z-index: 100;
+      display: flex; justify-content: flex-end;
+      padding: 12px 24px;
+      background: rgba(13,27,42,0.85);
+      backdrop-filter: blur(12px);
+    }
+    .lang-btn {
+      background: var(--card); border: 1px solid #2a4060;
+      color: var(--text); border-radius: 20px;
+      padding: 6px 16px; font-size: 13px; cursor: pointer;
+      display: flex; gap: 8px; align-items: center;
+    }
+    .lang-btn:hover { background: var(--accent); border-color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 100px 24px 60px;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(92,173,184,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(142,159,212,0.12) 0%, transparent 60%),
+        var(--bg);
+      position: relative; overflow: hidden;
+    }
+
+    /* animated bubbles */
+    .bubbles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .bubble {
+      position: absolute; bottom: -80px;
+      border-radius: 50%;
+      background: rgba(92,173,184,0.15);
+      animation: rise linear infinite;
+    }
+    @keyframes rise {
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    .app-icon {
+      width: 110px; height: 110px;
+      background: linear-gradient(135deg, #5CADB8 0%, #3d8c96 100%);
+      border-radius: 28px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 40px rgba(92,173,184,0.35);
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .hero h1 span { color: var(--accent); }
+
+    .hero .sub {
+      font-size: clamp(14px, 2.5vw, 18px);
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 36px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(92,173,184,0.18);
+      border: 1px solid rgba(92,173,184,0.4);
+      color: var(--accent);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+
+    .cta-group { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 50px;
+      font-size: 15px; font-weight: 600;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn:hover { transform: translateY(-2px); text-decoration: none; }
+
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      box-shadow: 0 4px 20px rgba(92,173,184,0.4);
+    }
+    .btn-primary:hover { box-shadow: 0 6px 28px rgba(92,173,184,0.55); }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid rgba(92,173,184,0.5);
+      color: var(--accent);
+    }
+    .btn-outline:hover { background: rgba(92,173,184,0.12); }
+
+    /* ── Section ── */
+    section { padding: 80px 24px; max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 800; margin-bottom: 8px;
+    }
+    .section-sub { color: var(--muted); font-size: 15px; margin-bottom: 40px; }
+
+    /* ── Features grid ── */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .feature-card {
+      background: var(--card);
+      border: 1px solid #1e3a55;
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .feature-icon {
+      font-size: 32px; margin-bottom: 14px;
+    }
+    .feature-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .feature-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Premium banner ── */
+    .premium-banner {
+      background: linear-gradient(135deg, #1a2f48 0%, #162840 100%);
+      border: 1px solid #ffd70030;
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex; gap: 20px; align-items: flex-start;
+      margin-top: 40px;
+    }
+    .premium-icon { font-size: 40px; flex-shrink: 0; }
+    .premium-banner h3 { color: #ffd700; font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .premium-banner p { color: var(--muted); font-size: 14px; }
+
+    /* ── Separator ── */
+    hr { border: none; border-top: 1px solid #1e3a55; margin: 0; }
+
+    /* ── Legal section ── */
+    .legal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .legal-card {
+      background: var(--card);
+      border: 1px solid #1e3a55;
+      border-radius: 14px;
+      padding: 20px;
+      display: flex; flex-direction: column; gap: 8px;
+      transition: border-color 0.2s;
+    }
+    .legal-card:hover { border-color: var(--accent); text-decoration: none; }
+    .legal-card .l-icon { font-size: 22px; }
+    .legal-card .l-title { font-size: 14px; font-weight: 700; color: var(--text); }
+    .legal-card .l-sub { font-size: 12px; color: var(--muted); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid #1e3a55;
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .premium-banner { flex-direction: column; }
+      .cta-group { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Lang bar -->
+<div class="lang-bar">
+  <button class="lang-btn" onclick="toggleLang()">
+    <span id="lang-flag">🇺🇸</span>
+    <span id="lang-label">English</span>
+  </button>
+</div>
+
+<!-- Bubbles -->
+<div class="bubbles" id="bubbles"></div>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <div class="app-icon">🐠</div>
+  <div class="badge" data-ko="🆓 무료 출시" data-en="🆓 Free Launch">🆓 무료 출시</div>
+  <h1 data-ko="토닥 <span>어항</span> 일기" data-en="Todak <span>Aquarium</span> Diary">
+    토닥 <span>어항</span> 일기
+  </h1>
+  <p class="sub"
+     data-ko="감정을 어항에 담는 나만의 힐링 다이어리"
+     data-en="Your personal healing diary — emotions captured in an aquarium">
+    감정을 어항에 담는 나만의 힐링 다이어리
+  </p>
+  <div class="cta-group">
+    <a class="btn btn-primary" href="#" id="appstore-btn"
+       data-ko="🍎 App Store에서 다운로드"
+       data-en="🍎 Download on the App Store">
+      🍎 App Store에서 다운로드
+    </a>
+    <a class="btn btn-outline" href="#features"
+       data-ko="기능 살펴보기"
+       data-en="Explore Features">
+      기능 살펴보기
+    </a>
+  </div>
+</div>
+
+<hr />
+
+<!-- ── Features ── -->
+<section id="features">
+  <p class="section-label" data-ko="주요 기능" data-en="Features">주요 기능</p>
+  <h2 class="section-title"
+      data-ko="어항이 나의 감정을 담아요"
+      data-en="Your aquarium reflects your emotions">
+    어항이 나의 감정을 담아요
+  </h2>
+  <p class="section-sub"
+     data-ko="7가지 감정 테마로 오늘의 마음을 표현해보세요"
+     data-en="Express today's feelings with 7 emotion themes">
+    7가지 감정 테마로 오늘의 마음을 표현해보세요
+  </p>
+
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">🐠</div>
+      <h3 data-ko="감정 어항" data-en="Emotion Aquarium">감정 어항</h3>
+      <p data-ko="감정을 선택하면 어항의 색상과 물고기가 변해요. 설레는 날엔 활기찬 어항을, 지친 날엔 잔잔한 어항을."
+         data-en="Choose your emotion and watch your aquarium transform — vibrant on excited days, calm on tired ones.">
+        감정을 선택하면 어항의 색상과 물고기가 변해요. 설레는 날엔 활기찬 어항을, 지친 날엔 잔잔한 어항을.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📖</div>
+      <h3 data-ko="힐링 일기" data-en="Healing Diary">힐링 일기</h3>
+      <p data-ko="아름다운 어항을 배경으로 오늘의 감정과 이야기를 기록해보세요."
+         data-en="Write today's feelings with a beautiful aquarium as your backdrop.">
+        아름다운 어항을 배경으로 오늘의 감정과 이야기를 기록해보세요.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <h3 data-ko="감정 아카이브" data-en="Emotion Archive">감정 아카이브</h3>
+      <p data-ko="지난 일기를 감정별로 모아볼 수 있어요. 나의 감정 흐름을 돌아보세요."
+         data-en="Browse past entries by emotion. Reflect on your emotional journey over time.">
+        지난 일기를 감정별로 모아볼 수 있어요. 나의 감정 흐름을 돌아보세요.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👀</div>
+      <h3 data-ko="멍때리기 모드" data-en="Zone Out Mode">멍때리기 모드</h3>
+      <p data-ko="전체 화면 어항으로 일상의 소음에서 벗어나 마음을 비워보세요."
+         data-en="Full-screen aquarium to empty your mind and escape daily noise.">
+        전체 화면 어항으로 일상의 소음에서 벗어나 마음을 비워보세요.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎵</div>
+      <h3 data-ko="소리 테마" data-en="Sound Themes">소리 테마</h3>
+      <p data-ko="달빛 어항, 열대 산호초, 깊은 바다 — 분위기에 맞는 자연의 소리."
+         data-en="Moonlight Aquarium, Tropical Reef, Deep Sea — nature sounds for every mood.">
+        달빛 어항, 열대 산호초, 깊은 바다 — 분위기에 맞는 자연의 소리.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">☁️</div>
+      <h3 data-ko="iCloud 동기화" data-en="iCloud Sync">iCloud 동기화</h3>
+      <p data-ko="iPhone, iPad, Mac — 어디서나 내 어항 일기를 이어볼 수 있어요."
+         data-en="iPhone, iPad, Mac — your aquarium diary stays in sync everywhere.">
+        iPhone, iPad, Mac — 어디서나 내 어항 일기를 이어볼 수 있어요.
+      </p>
+    </div>
+  </div>
+
+  <!-- Premium banner -->
+  <div class="premium-banner">
+    <div class="premium-icon">👑</div>
+    <div>
+      <h3 data-ko="프리미엄 구독 출시 예정"
+          data-en="Premium Subscription — Coming Soon">
+        프리미엄 구독 출시 예정
+      </h3>
+      <p data-ko="토닥 어항 일기는 현재 모든 기능을 완전 무료로 제공합니다. 더 많은 어항 테마, 소리 팩, 감정 리포트 등이 포함된 프리미엄 구독이 곧 출시될 예정입니다. 기대해 주세요!"
+         data-en="Todak Aquarium Diary is currently completely free. A premium subscription with more aquarium themes, sound packs, and emotion reports is coming soon. Stay tuned!">
+        토닥 어항 일기는 현재 모든 기능을 완전 무료로 제공합니다. 더 많은 어항 테마, 소리 팩, 감정 리포트 등이 포함된 프리미엄 구독이 곧 출시될 예정입니다. 기대해 주세요!
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr />
+
+<!-- ── Legal ── -->
+<section id="legal">
+  <p class="section-label" data-ko="법적 고지" data-en="Legal">법적 고지</p>
+  <h2 class="section-title"
+      data-ko="투명하게 운영합니다"
+      data-en="We operate transparently">
+    투명하게 운영합니다
+  </h2>
+  <p class="section-sub"
+     data-ko="토닥은 사용자의 개인정보와 신뢰를 소중히 여깁니다."
+     data-en="Todak values your privacy and trust.">
+    토닥은 사용자의 개인정보와 신뢰를 소중히 여깁니다.
+  </p>
+
+  <div class="legal-grid">
+    <a class="legal-card" href="docs/PRIVACY_POLICY.md" target="_blank">
+      <div class="l-icon">🔒</div>
+      <div class="l-title" data-ko="개인정보 처리방침" data-en="Privacy Policy">개인정보 처리방침</div>
+      <div class="l-sub" data-ko="수집하는 정보와 사용 방법" data-en="What we collect and how">수집하는 정보와 사용 방법</div>
+    </a>
+    <a class="legal-card" href="docs/TERMS_OF_SERVICE.md" target="_blank">
+      <div class="l-icon">📄</div>
+      <div class="l-title" data-ko="이용약관" data-en="Terms of Service">이용약관</div>
+      <div class="l-sub" data-ko="서비스 이용 조건" data-en="Terms for using our service">서비스 이용 조건</div>
+    </a>
+    <a class="legal-card" href="docs/LEGAL_NOTICE.md" target="_blank">
+      <div class="l-icon">⚖️</div>
+      <div class="l-title" data-ko="법적 고지" data-en="Legal Notice">법적 고지</div>
+      <div class="l-sub" data-ko="저작권 및 라이선스" data-en="Copyright and licenses">저작권 및 라이선스</div>
+    </a>
+    <a class="legal-card" href="mailto:todaklife@gmail.com">
+      <div class="l-icon">✉️</div>
+      <div class="l-title" data-ko="문의하기" data-en="Contact Us">문의하기</div>
+      <div class="l-sub">todaklife@gmail.com</div>
+    </a>
+  </div>
+</section>
+
+<hr />
+
+<!-- ── Footer ── -->
+<footer>
+  <p data-ko="© 2026 Todak · 한국 및 미국 App Store 출시"
+     data-en="© 2026 Todak · Available on the App Store in Korea and the US">
+    © 2026 Todak · 한국 및 미국 App Store 출시
+  </p>
+  <p style="margin-top:8px">
+    <a href="mailto:todaklife@gmail.com">todaklife@gmail.com</a> ·
+    <a href="https://github.com/KDYPOHO/todak--aquarium--diary" target="_blank">GitHub</a>
+  </p>
+</footer>
+
+<script>
+  /* ── Bubbles ── */
+  const container = document.getElementById('bubbles');
+  for (let i = 0; i < 18; i++) {
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    const size = 8 + Math.random() * 30;
+    b.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      animation-duration:${8+Math.random()*14}s;
+      animation-delay:${Math.random()*10}s;
+      opacity:${0.1+Math.random()*0.25};
+    `;
+    container.appendChild(b);
+  }
+
+  /* ── Language toggle ── */
+  let currentLang = 'ko';
+  function toggleLang() {
+    currentLang = currentLang === 'ko' ? 'en' : 'ko';
+    document.documentElement.lang = currentLang;
+    document.getElementById('lang-flag').textContent = currentLang === 'ko' ? '🇺🇸' : '🇰🇷';
+    document.getElementById('lang-label').textContent = currentLang === 'ko' ? 'English' : '한국어';
+
+    document.querySelectorAll('[data-ko]').forEach(el => {
+      const val = currentLang === 'ko' ? el.dataset.ko : el.dataset.en;
+      if (val) el.innerHTML = val;
+    });
+  }
+</script>
+
+</body>
+</html>
