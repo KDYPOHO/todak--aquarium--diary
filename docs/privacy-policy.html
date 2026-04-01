@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>개인정보 처리방침 · Todak Aquarium Diary</title>
+  <style>
+    :root {
+      --accent: #5CADB8;
+      --bg: #f9f9fb;
+      --bg2: #f2f2f7;
+      --card: #ffffff;
+      --text: #1c1c1e;
+      --text2: #3a3a3c;
+      --muted: #8e8e93;
+      --border: #e5e5ea;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .back-btn {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 0.9rem; color: var(--accent);
+      background: none; border: none; cursor: pointer;
+      padding: 0;
+    }
+    .lang-btn {
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--muted); border-radius: 20px;
+      padding: 5px 14px; font-size: 13px; cursor: pointer;
+    }
+    .lang-btn:hover { background: var(--bg2); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px 60px; }
+
+    .doc-header {
+      text-align: center;
+      padding: 32px 0 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 36px;
+    }
+    .doc-icon {
+      width: 60px; height: 60px;
+      border-radius: 16px;
+      background: #e8f0fe;
+      margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+    }
+    .doc-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+    .doc-header .meta { font-size: 0.82rem; color: var(--muted); }
+
+    .section { margin-bottom: 28px; }
+    .section-label {
+      font-size: 0.7rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted); margin-bottom: 8px; padding-left: 4px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .card-body { padding: 16px 18px; }
+    .card-body + .card-body { border-top: 1px solid var(--border); }
+
+    h3 { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    p { font-size: 0.87rem; color: var(--text2); line-height: 1.7; }
+    ul { font-size: 0.87rem; color: var(--text2); line-height: 1.7; padding-left: 18px; }
+    li { margin-bottom: 2px; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+    th {
+      background: var(--bg2); text-align: left;
+      padding: 9px 12px; font-size: 0.75rem;
+      color: var(--muted); font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+    td { padding: 10px 12px; color: var(--text2); border-bottom: 1px solid var(--border); }
+    tr:last-child td { border-bottom: none; }
+
+    .highlight-box {
+      background: var(--bg2);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--text2);
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding-top: 20px; margin-top: 8px;
+      text-align: center; font-size: 0.75rem; color: var(--muted);
+    }
+
+    [data-ko], [data-en] { display: none; }
+    body.ko [data-ko] { display: block; }
+    body.en [data-en] { display: block; }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1c1e; --bg2: #2c2c2e; --card: #2c2c2e;
+        --text: #f2f2f7; --text2: #ebebf599;
+        --muted: #98989f; --border: #3a3a3c;
+      }
+    }
+  </style>
+</head>
+<body class="ko">
+
+  <div class="top-bar">
+    <button class="back-btn" onclick="history.back()">‹ <span data-ko>뒤로</span><span data-en>Back</span></button>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">🇺🇸 English</button>
+  </div>
+
+  <div class="container">
+
+    <div class="doc-header">
+      <div class="doc-icon">🔒</div>
+      <h1><span data-ko>개인정보 처리방침</span><span data-en>Privacy Policy</span></h1>
+      <div class="meta">
+        <span data-ko>토닥 어항 일기 · 시행일: 2026년 4월 1일 · todaklife@gmail.com</span>
+        <span data-en>Todak Aquarium Diary · Effective: April 1, 2026 · todaklife@gmail.com</span>
+      </div>
+    </div>
+
+    <!-- 1. 개요 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>1. 개요</span><span data-en>1. Overview</span></div>
+      <div class="card">
+        <div class="card-body">
+          <p data-ko>토닥 어항 일기(이하 "앱")는 사용자의 개인정보를 소중히 여기며, 개인정보보호법 및 관련 법규를 준수합니다. 본 방침은 앱이 수집하는 정보와 그 사용 방법을 설명합니다.</p>
+          <p data-en>Todak Aquarium Diary ("the App") respects your privacy and complies with applicable data protection laws. This policy explains what information the App collects and how it is used.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 수집 정보 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>2. 수집하는 정보</span><span data-en>2. Information We Collect</span></div>
+      <div class="card">
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th data-ko>정보</th><th data-en>Information</th>
+                  <th data-ko>수집 방법</th><th data-en>How Collected</th>
+                  <th data-ko>목적</th><th data-en>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-ko>Apple ID (이름, 이메일)</td><td data-en>Apple ID (name, email)</td>
+                  <td data-ko>Apple Sign In</td><td data-en>Apple Sign In</td>
+                  <td data-ko>로그인 및 계정 식별</td><td data-en>Login & account ID</td>
+                </tr>
+                <tr>
+                  <td data-ko>일기 내용 및 감정 데이터</td><td data-en>Diary & emotion data</td>
+                  <td data-ko>사용자 직접 입력</td><td data-en>User input</td>
+                  <td data-ko>어항 일기 서비스 제공</td><td data-en>App service</td>
+                </tr>
+                <tr>
+                  <td data-ko>앱 설정 (언어, 테마 등)</td><td data-en>App settings</td>
+                  <td data-ko>자동 저장</td><td data-en>Auto-saved</td>
+                  <td data-ko>사용자 경험 개선</td><td data-en>UX improvement</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="highlight-box">
+            <span data-ko>수집하지 않는 정보: 위치정보, 연락처, 사진, 광고 식별자, 행동 분석 데이터</span>
+            <span data-en>Not collected: Location, contacts, photos, advertising IDs, behavioral analytics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 저장 및 동기화 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>3. 정보의 저장 및 동기화</span><span data-en>3. Data Storage &amp; Sync</span></div>
+      <div class="card">
+        <div class="card-body">
+          <h3><span data-ko>일기 데이터</span><span data-en>Diary Data</span></h3>
+          <p data-ko>사용자 본인의 iCloud 개인 데이터베이스에 저장됩니다. 개발자는 이 데이터에 접근할 수 없습니다.</p>
+          <p data-en>Stored in your own private iCloud database. The developer has no access to this data.</p>
+        </div>
+        <div class="card-body">
+          <h3><span data-ko>공지사항</span><span data-en>Notices</span></h3>
+          <p data-ko>모든 사용자가 볼 수 있는 CloudKit 공개 데이터베이스에 저장됩니다 (관리자 작성만 해당).</p>
+          <p data-en>Stored in a CloudKit public database visible to all users (admin-created only).</p>
+        </div>
+        <div class="card-body">
+          <h3><span data-ko>앱 설정</span><span data-en>App Settings</span></h3>
+          <p data-ko>기기 로컬 저장소(UserDefaults)에 저장됩니다.</p>
+          <p data-en>Stored locally on the device (UserDefaults).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 제3자 정보 제공 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>4. 제3자 정보 제공</span><span data-en>4. Third-Party Sharing</span></div>
+      <div class="card">
+        <div class="card-body">
+          <p data-ko>앱은 다음 경우를 제외하고 개인정보를 제3자에게 제공하지 않습니다:</p>
+          <p data-en>The App does not share personal information with third parties except:</p>
+          <ul style="margin-top:8px;">
+            <li data-ko>법령에 의한 경우</li><li data-en>When required by law</li>
+            <li data-ko>사용자의 명시적 동의가 있는 경우</li><li data-en>With your explicit consent</li>
+          </ul>
+          <div class="highlight-box">
+            <span data-ko>Google Analytics, Firebase, 광고 SDK 등 제3자 분석 도구를 사용하지 않습니다.</span>
+            <span data-en>The App does not use Google Analytics, Firebase, advertising SDKs, or other third-party analytics tools.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 보유 및 삭제 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>5. 개인정보 보유 및 삭제</span><span data-en>5. Data Retention &amp; Deletion</span></div>
+      <div class="card">
+        <div class="card-body">
+          <ul>
+            <li data-ko>사용자는 앱 내에서 일기를 직접 삭제할 수 있습니다.</li>
+            <li data-en>You can delete diary entries directly within the App.</li>
+            <li data-ko>계정 탈퇴 시 iCloud에서 데이터를 삭제하려면 기기의 iCloud 설정을 이용하세요.</li>
+            <li data-en>To remove data from iCloud, use your device's iCloud Settings > Manage Storage.</li>
+            <li data-ko>Apple ID 관련 정보는 Apple의 개인정보 정책에 따릅니다.</li>
+            <li data-en>Apple ID information is subject to Apple's Privacy Policy.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 아동 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>6. 아동의 개인정보</span><span data-en>6. Children's Privacy</span></div>
+      <div class="card">
+        <div class="card-body">
+          <p data-ko>본 앱은 만 14세 미만 아동의 개인정보를 의도적으로 수집하지 않습니다.</p>
+          <p data-en>The App does not knowingly collect personal information from children under the age of 13 (US) / 14 (Korea).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 문의 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>7. 개인정보 보호책임자</span><span data-en>7. Privacy Contact</span></div>
+      <div class="card">
+        <div class="card-body">
+          <p data-ko>이름: Todak 개발팀</p>
+          <p data-en>Name: Todak Development Team</p>
+          <p style="margin-top:6px;"><a href="mailto:todaklife@gmail.com">todaklife@gmail.com</a></p>
+          <p style="margin-top:4px; font-size:0.82rem; color:var(--muted);">
+            <span data-ko>문의 응답 기간: 영업일 기준 3일 이내</span>
+            <span data-en>Response time: Within 3 business days</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 방침 변경 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>8. 방침 변경</span><span data-en>8. Policy Changes</span></div>
+      <div class="card">
+        <div class="card-body">
+          <p data-ko>개인정보 처리방침이 변경될 경우 앱 내 공지사항 및 GitHub를 통해 사전 고지합니다.</p>
+          <p data-en>If this Privacy Policy changes, we will notify users through in-app notices and this GitHub repository in advance.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">© 2026 Todak. All rights reserved. · <a href="mailto:todaklife@gmail.com">todaklife@gmail.com</a></div>
+  </div>
+
+  <script>
+    function toggleLang() {
+      const body = document.body;
+      const btn = document.getElementById('langBtn');
+      if (body.classList.contains('ko')) {
+        body.classList.replace('ko', 'en');
+        btn.textContent = '🇰🇷 한국어';
+        document.documentElement.lang = 'en';
+      } else {
+        body.classList.replace('en', 'ko');
+        btn.textContent = '🇺🇸 English';
+        document.documentElement.lang = 'ko';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>법적 고지 · Todak Aquarium Diary</title>
+  <style>
+    :root {
+      --accent: #5CADB8;
+      --bg: #f9f9fb; --bg2: #f2f2f7; --card: #ffffff;
+      --text: #1c1c1e; --text2: #3a3a3c; --muted: #8e8e93;
+      --border: #e5e5ea; --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px; max-width: 760px; margin: 0 auto;
+    }
+    .back-btn {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 0.9rem; color: var(--accent);
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .lang-btn {
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--muted); border-radius: 20px;
+      padding: 5px 14px; font-size: 13px; cursor: pointer;
+    }
+    .lang-btn:hover { background: var(--bg2); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px 60px; }
+
+    .doc-header {
+      text-align: center; padding: 32px 0 40px;
+      border-bottom: 1px solid var(--border); margin-bottom: 36px;
+    }
+    .doc-icon {
+      width: 60px; height: 60px; border-radius: 16px;
+      background: #f0e8fe; margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center; font-size: 28px;
+    }
+    .doc-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+    .doc-header .meta { font-size: 0.82rem; color: var(--muted); }
+
+    .section { margin-bottom: 28px; }
+    .section-label {
+      font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; padding-left: 4px;
+    }
+    .card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; }
+    .card-body { padding: 16px 18px; }
+    .card-body + .card-body { border-top: 1px solid var(--border); }
+    h3 { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    p { font-size: 0.87rem; color: var(--text2); line-height: 1.7; }
+    ul { font-size: 0.87rem; color: var(--text2); line-height: 1.7; padding-left: 18px; }
+    li { margin-bottom: 3px; }
+
+    .copyright-badge {
+      display: inline-block;
+      background: var(--bg2);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--border); padding-top: 20px; margin-top: 8px;
+      text-align: center; font-size: 0.75rem; color: var(--muted);
+    }
+
+    [data-ko], [data-en] { display: none; }
+    body.ko [data-ko] { display: block; }
+    body.en [data-en] { display: block; }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1c1e; --bg2: #2c2c2e; --card: #2c2c2e;
+        --text: #f2f2f7; --text2: #ebebf599; --muted: #98989f; --border: #3a3a3c;
+      }
+    }
+  </style>
+</head>
+<body class="ko">
+
+  <div class="top-bar">
+    <button class="back-btn" onclick="history.back()">‹ <span data-ko>뒤로</span><span data-en>Back</span></button>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">🇺🇸 English</button>
+  </div>
+
+  <div class="container">
+
+    <div class="doc-header">
+      <div class="doc-icon">⚖️</div>
+      <h1><span data-ko>법적 고지</span><span data-en>Legal Notice</span></h1>
+      <div class="meta">
+        <span data-ko>토닥 어항 일기 · 최종 업데이트: 2026년 4월 1일 · todaklife@gmail.com</span>
+        <span data-en>Todak Aquarium Diary · Last Updated: April 1, 2026 · todaklife@gmail.com</span>
+      </div>
+    </div>
+
+    <!-- 1. 저작권 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>1. 저작권 고지</span><span data-en>1. Copyright Notice</span></div>
+      <div class="card"><div class="card-body">
+        <div class="copyright-badge">© 2026 Todak. All rights reserved.</div>
+        <p data-ko>토닥 어항 일기의 앱 디자인, 아이콘, 그래픽, 소스 코드, 텍스트 콘텐츠에 대한 저작권은 개발자에게 있습니다. 사전 서면 허가 없이 무단으로 복제, 배포, 수정, 전시, 판매하는 행위를 금지합니다.</p>
+        <p data-en>The app design, icons, graphics, source code, and text content of Todak Aquarium Diary are protected by copyright. Unauthorized reproduction, distribution, modification, display, or sale is prohibited without prior written permission from the Developer.</p>
+      </div></div>
+    </div>
+
+    <!-- 2. Apple 플랫폼 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>2. Apple 플랫폼 관련 고지</span><span data-en>2. Apple Platform Notice</span></div>
+      <div class="card">
+        <div class="card-body">
+          <p data-ko>본 앱은 Apple Inc.의 플랫폼(iOS, iPadOS, macOS)에서 동작하며, 다음 Apple 서비스를 이용합니다:</p>
+          <p data-en>This App operates on Apple Inc. platforms (iOS, iPadOS, macOS) and uses the following Apple services:</p>
+          <ul style="margin-top:8px;">
+            <li data-ko><strong>Apple Sign In</strong>: 계정 인증</li>
+            <li data-en><strong>Sign in with Apple</strong>: Account authentication</li>
+            <li data-ko><strong>CloudKit</strong>: 데이터 동기화 및 공지사항 공개 데이터베이스</li>
+            <li data-en><strong>CloudKit</strong>: Data synchronization and public notices database</li>
+            <li data-ko><strong>SwiftData</strong>: 로컬 데이터 관리</li>
+            <li data-en><strong>SwiftData</strong>: Local data management</li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <p data-ko>Apple, iOS, iPadOS, macOS, CloudKit, iCloud 등은 Apple Inc.의 상표 또는 등록 상표입니다.</p>
+          <p data-en>Apple, iOS, iPadOS, macOS, CloudKit, iCloud, and related names are trademarks or registered trademarks of Apple Inc.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 오픈소스 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>3. 오픈소스 라이선스</span><span data-en>3. Open Source Licenses</span></div>
+      <div class="card">
+        <div class="card-body">
+          <p data-ko>본 앱은 Apple의 공개 프레임워크를 사용합니다. 이는 Apple의 SDK 라이선스에 따릅니다:</p>
+          <p data-en>This App uses Apple's public frameworks, subject to Apple's SDK License:</p>
+          <ul style="margin-top:8px;">
+            <li>SwiftUI</li>
+            <li>SwiftData</li>
+            <li>CloudKit</li>
+            <li>AuthenticationServices</li>
+            <li>CryptoKit</li>
+            <li>AVFoundation</li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <p data-ko>현재 별도의 오픈소스 라이브러리를 사용하지 않습니다.</p>
+          <p data-en>No additional open-source libraries are currently used.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 사운드 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>4. 사운드 콘텐츠</span><span data-en>4. Sound Content</span></div>
+      <div class="card"><div class="card-body">
+        <p data-ko>앱 내 사운드 테마에 사용되는 음원은 상업적 이용이 가능한 라이선스를 획득하였거나, CC0(퍼블릭 도메인) 라이선스에 해당하는 콘텐츠를 사용합니다.</p>
+        <p data-en>Sound effects and ambient audio used in the App are either licensed for commercial use or sourced under CC0 (Public Domain) licenses.</p>
+      </div></div>
+    </div>
+
+    <!-- 5. 서비스 지역 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>5. 서비스 지역</span><span data-en>5. Service Regions</span></div>
+      <div class="card"><div class="card-body">
+        <p data-ko>본 앱은 대한민국 및 미국 App Store를 통해 출시됩니다. 해당 국가의 관련 법규를 준수합니다.</p>
+        <p data-en>This App is distributed through the App Store in the Republic of Korea and the United States, and complies with applicable laws in those regions.</p>
+      </div></div>
+    </div>
+
+    <!-- 6. 책임의 한계 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>6. 책임의 한계</span><span data-en>6. Limitation of Liability</span></div>
+      <div class="card"><div class="card-body">
+        <ul>
+          <li data-ko>본 앱은 "현재 상태 그대로(AS-IS)" 제공됩니다.</li>
+          <li data-en>This App is provided "AS IS" without warranties of any kind.</li>
+          <li data-ko>개발자는 앱 사용으로 인해 발생하는 직·간접적 손해에 대해 법이 허용하는 최대 범위 내에서 책임을 면합니다.</li>
+          <li data-en>To the maximum extent permitted by law, the Developer disclaims liability for any direct or indirect damages arising from use of the App.</li>
+          <li data-ko>정신 건강 위기 상황에서는 전문 의료 기관에 상담을 받으시기 바랍니다. 본 앱은 의료 서비스를 대체하지 않습니다.</li>
+          <li data-en>If you are experiencing a mental health crisis, please consult a qualified healthcare professional. This App is not a substitute for professional medical services.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <!-- 7. 문의 -->
+    <div class="section">
+      <div class="section-label"><span data-ko>7. 문의처</span><span data-en>7. Contact</span></div>
+      <div class="card"><div class="card-body">
+        <p data-ko>법적 문의사항은 아래로 연락주세요:</p>
+        <p data-en>For legal inquiries, please contact:</p>
+        <p style="margin-top:8px;"><a href="mailto:todaklife@gmail.com">todaklife@gmail.com</a></p>
+      </div></div>
+    </div>
+
+    <div class="footer">© 2026 Todak. All rights reserved. · <a href="mailto:todaklife@gmail.com">todaklife@gmail.com</a></div>
+  </div>
+
+  <script>
+    function toggleLang() {
+      const body = document.body;
+      const btn = document.getElementById('langBtn');
+      if (body.classList.contains('ko')) {
+        body.classList.replace('ko', 'en');
+        btn.textContent = '🇰🇷 한국어';
+        document.documentElement.lang = 'en';
+      } else {
+        body.classList.replace('en', 'ko');
+        btn.textContent = '🇺🇸 English';
+        document.documentElement.lang = 'ko';
+      }
+    }
+  </script>
+</body>
+</html>

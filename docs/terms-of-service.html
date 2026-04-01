@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이용약관 · Todak Aquarium Diary</title>
+  <style>
+    :root {
+      --accent: #5CADB8;
+      --bg: #f9f9fb; --bg2: #f2f2f7; --card: #ffffff;
+      --text: #1c1c1e; --text2: #3a3a3c; --muted: #8e8e93;
+      --border: #e5e5ea; --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px; max-width: 760px; margin: 0 auto;
+    }
+    .back-btn {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 0.9rem; color: var(--accent);
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .lang-btn {
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--muted); border-radius: 20px;
+      padding: 5px 14px; font-size: 13px; cursor: pointer;
+    }
+    .lang-btn:hover { background: var(--bg2); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px 60px; }
+
+    .doc-header {
+      text-align: center; padding: 32px 0 40px;
+      border-bottom: 1px solid var(--border); margin-bottom: 36px;
+    }
+    .doc-icon {
+      width: 60px; height: 60px; border-radius: 16px;
+      background: #fef3e2; margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center; font-size: 28px;
+    }
+    .doc-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+    .doc-header .meta { font-size: 0.82rem; color: var(--muted); }
+
+    .section { margin-bottom: 28px; }
+    .section-label {
+      font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; padding-left: 4px;
+    }
+    .card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; }
+    .card-body { padding: 16px 18px; }
+    .card-body + .card-body { border-top: 1px solid var(--border); }
+    h3 { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    p { font-size: 0.87rem; color: var(--text2); line-height: 1.7; }
+    ul, ol { font-size: 0.87rem; color: var(--text2); line-height: 1.7; padding-left: 18px; }
+    li { margin-bottom: 3px; }
+
+    .article-num {
+      display: inline-block;
+      background: var(--bg2);
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--border); padding-top: 20px; margin-top: 8px;
+      text-align: center; font-size: 0.75rem; color: var(--muted);
+    }
+
+    [data-ko], [data-en] { display: none; }
+    body.ko [data-ko] { display: block; }
+    body.en [data-en] { display: block; }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1c1e; --bg2: #2c2c2e; --card: #2c2c2e;
+        --text: #f2f2f7; --text2: #ebebf599; --muted: #98989f; --border: #3a3a3c;
+      }
+    }
+  </style>
+</head>
+<body class="ko">
+
+  <div class="top-bar">
+    <button class="back-btn" onclick="history.back()">‹ <span data-ko>뒤로</span><span data-en>Back</span></button>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">🇺🇸 English</button>
+  </div>
+
+  <div class="container">
+
+    <div class="doc-header">
+      <div class="doc-icon">📄</div>
+      <h1><span data-ko>이용약관</span><span data-en>Terms of Service</span></h1>
+      <div class="meta">
+        <span data-ko>토닥 어항 일기 · 시행일: 2026년 4월 1일 · todaklife@gmail.com</span>
+        <span data-en>Todak Aquarium Diary · Effective: April 1, 2026 · todaklife@gmail.com</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label"><span data-ko>제1조 (목적)</span><span data-en>Article 1 (Purpose)</span></div>
+      <div class="card"><div class="card-body">
+        <p data-ko>본 이용약관은 Todak(이하 "개발자")이 제공하는 토닥 어항 일기 애플리케이션(이하 "앱")의 이용 조건 및 절차, 개발자와 이용자의 권리·의무를 규정함을 목적으로 합니다.</p>
+        <p data-en>These Terms of Service govern the conditions and procedures for using the Todak Aquarium Diary application ("App") provided by Todak ("Developer"), and define the rights and obligations of the Developer and users.</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label"><span data-ko>제2조 (서비스 설명)</span><span data-en>Article 2 (Service Description)</span></div>
+      <div class="card"><div class="card-body">
+        <p data-ko>토닥 어항 일기는 사용자의 감정을 어항으로 표현하고 힐링 일기를 작성할 수 있는 개인 다이어리 앱입니다. 현재 전체 기능을 무료로 제공하며, 향후 프리미엄 구독 기능이 추가될 예정입니다.</p>
+        <p data-en>Todak Aquarium Diary is a personal diary app that lets users express their emotions through an aquarium and write healing diary entries. All features are currently provided free of charge. A premium subscription with additional features is planned for the future.</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label"><span data-ko>제3조 (이용 자격)</span><span data-en>Article 3 (Eligibility)</span></div>
+      <div class="card"><div class="card-body">
+        <ul>
+          <li data-ko>본 앱은 Apple 계정(Apple ID)을 보유한 누구나 이용할 수 있습니다.</li>
+          <li data-en>Anyone with an Apple ID may use this App.</li>
+          <li data-ko>만 14세 미만의 경우 법정대리인의 동의가 필요합니다.</li>
+          <li data-en>Users under 13 (US) / 14 (Korea) must have parental consent.</li>
+          <li data-ko>Apple의 이용약관 및 App Store 정책을 준수해야 합니다.</li>
+          <li data-en>Users must comply with Apple's Terms of Service and App Store policies.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label"><span data-ko>제4조 (서비스 이용)</span><span data-en>Article 4 (Service Use)</span></div>
+      <div class="card">
+        <div class="card-body">
+          <h3><span data-ko>무료 이용</span><span data-en>Free Access</span></h3>
+          <p data-ko>현재 앱의 모든 기능은 무료로 제공됩니다.</p>
+          <p data-en>All App features are currently available at no cost.</p>
+        </div>
+        <div class="card-body">
+          <h3><span data-ko>프리미엄 예정</span><span data-en>Premium Coming Soon</span></h3>
+          <p data-ko>향후 추가 기능 및 테마가 포함된 유료 구독 서비스가 출시될 예정입니다. 출시 전 앱 내 공지를 통해 안내드립니다.</p>
+          <p data-en>A paid subscription service with additional features and themes is planned. You will be notified through in-app notices before launch.</p>
+        </div>
+        <div class="card-body">
+          <h3><span data-ko>계정</span><span data-en>Account</span></h3>
+          <p data-ko>Apple Sign In을 통한 로그인이 필요합니다.</p>
+          <p data-en>Sign in with Apple is required to use the App.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label"><span data-ko>제5조 (이용자의 의무)</span><span data-en>Article 5 (User Obligations)</span></div>
+      <div class="card"><div class="card-body">
+        <p data-ko>이용자는 다음 행위를 해서는 안 됩니다:</p>
+        <p data-en>Users must not:</p>
+        <ul style="margin-top:8px;">
+          <li data-ko>앱 및 서비스를 불법적인 목적으로 사용하는 행위</li>
+          <li data-en>Use the App for illegal purposes</li>
+          <li data-ko>타인의 정보를 도용하거나 허위 정보를 등록하는 행위</li>
+          <li data-en>Impersonate others or register false information</li>
+          <li data-ko>앱의 정상적인 운영을 방해하는 행위</li>
+          <li data-en>Interfere with the normal operation of the App</li>
+          <li data-ko>앱을 역설계(리버스 엔지니어링)하거나 복제하는 행위</li>
+          <li data-en>Reverse engineer, decompile, or copy the App</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label"><span data-ko>제6조 (서비스 변경 및 중단)</span><span data-en>Article 6 (Changes &amp; Interruptions)</span></div>
+      <div class="card"><div class="card-body">
+        <p data-ko>개발자는 서비스의 내용을 변경하거나 중단할 수 있으며, 이 경우 사전에 공지합니다. 다만 불가피한 사정이 있는 경우 사후 공지할 수 있습니다.</p>
+        <p data-en>The Developer may modify or discontinue the service and will provide prior notice when possible. In unavoidable circumstances, notice may be given after the fact.</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label"><span data-ko>제7조 (지적재산권)</span><span data-en>Article 7 (Intellectual Property)</span></div>
+      <div class="card"><div class="card-body">
+        <p data-ko>앱의 디자인, 로고, 소스 코드, 콘텐츠에 대한 저작권 및 지적재산권은 개발자에게 있습니다. 이용자가 직접 작성한 일기 내용의 저작권은 이용자에게 있습니다.</p>
+        <p data-en>The copyright and intellectual property rights for the App's design, logo, source code, and content belong to the Developer. The copyright for diary entries written by users belongs to the respective users.</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label"><span data-ko>제8조 (면책조항)</span><span data-en>Article 8 (Disclaimers)</span></div>
+      <div class="card"><div class="card-body">
+        <ul>
+          <li data-ko>개발자는 서비스의 일시적 중단 또는 오류에 대해 책임을 지지 않습니다.</li>
+          <li data-en>The Developer is not responsible for temporary service interruptions or errors.</li>
+          <li data-ko>이용자의 귀책사유로 인한 서비스 이용 장애에 대해 개발자는 책임을 지지 않습니다.</li>
+          <li data-en>The Developer is not responsible for disruptions caused by the user's own actions.</li>
+          <li data-ko>iCloud 서비스 장애로 인한 데이터 손실에 대해 개발자는 책임을 지지 않습니다.</li>
+          <li data-en>The Developer is not responsible for data loss due to iCloud service failures.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label"><span data-ko>제9조 (준거법 및 관할)</span><span data-en>Article 9 (Governing Law)</span></div>
+      <div class="card"><div class="card-body">
+        <p data-ko>본 약관은 대한민국 법률을 준거법으로 하며, 분쟁 발생 시 개발자 소재지를 관할하는 법원을 전속 관할로 합니다.</p>
+        <p data-en>These Terms are governed by the laws of the Republic of Korea. Any disputes shall be subject to the exclusive jurisdiction of the court having jurisdiction over the Developer's location.</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label"><span data-ko>제10조 (약관 변경)</span><span data-en>Article 10 (Changes to Terms)</span></div>
+      <div class="card"><div class="card-body">
+        <p data-ko>개발자는 약관을 변경할 경우 시행 7일 전까지 앱 내 공지사항을 통해 고지합니다.</p>
+        <p data-en>If the Developer changes these Terms, notice will be provided through in-app notices at least 7 days before the changes take effect.</p>
+      </div></div>
+    </div>
+
+    <div class="footer">© 2026 Todak. All rights reserved. · <a href="mailto:todaklife@gmail.com">todaklife@gmail.com</a></div>
+  </div>
+
+  <script>
+    function toggleLang() {
+      const body = document.body;
+      const btn = document.getElementById('langBtn');
+      if (body.classList.contains('ko')) {
+        body.classList.replace('ko', 'en');
+        btn.textContent = '🇰🇷 한국어';
+        document.documentElement.lang = 'en';
+      } else {
+        body.classList.replace('en', 'ko');
+        btn.textContent = '🇺🇸 English';
+        document.documentElement.lang = 'ko';
+      }
+    }
+  </script>
+</body>
+</html>
